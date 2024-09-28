@@ -12,7 +12,7 @@ class Tips:
 bill = Tips(1200, 5)
 bill.calc_tips()
 
--------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 #Конвертер температуры
 class TempCalc:
   Temperature = ('c', 'f', 'k')
@@ -45,3 +45,17 @@ new_temp = TempCalc(100, 'f')
 new_temp.calculate()
 new_temp = TempCalc(1000, 'k')
 new_temp.calculate()
+
+
+#-----------------------------------------------------------------------------------------------------
+#Генератор паролей
+import random
+
+class Password:
+    keys = "abcdefghijklmnopqrstuvxyz1234567890~!@#$%^&*()_+-={}|:<>?,./;[]'"
+    
+    def __init__(self, length):
+        new_pass = ''.join(random.sample(self.keys, length))
+        print(f' Ваш пароль длиной {length} символов - {new_pass}')
+
+new_pass = Password(8)
