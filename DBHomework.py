@@ -5,7 +5,7 @@ conn = sqlite3.connect('shop.db')
 cursor = conn.cursor()
 
 cursor.execute('''
-CREATE TABLE items (
+CREATE TABLE IF NOT EXISTS items (
 id INTEGER PRIMARY KEY,
 name TEXT,
 category TEXT,
@@ -47,18 +47,34 @@ conn.commit()
 #Вывести все игровые клавиатуры дороже 5000р
 
 cursor.execute("SELECT * FROM items WHERE category = 'игровая' AND price > 5000")
+answer = cursor.fetchall()
+print('Вывести все игровые клавиатуры дороже 5000р')
+for i in answer:
+    print(i)
 conn.commit()
 
 #Вывести все игровые клавиатуры дороже 2000р и с количеством больше 3
 cursor.execute("SELECT * FROM items WHERE category = 'игровая' AND price > 2000 AND amount > 3")
+answer = cursor.fetchall()
+print('Вывести все игровые клавиатуры дороже 2000р и с количеством больше 3')
+for i in answer:
+    print(i)
 conn.commit()
 
 #Вывести все офисные клавиатуры дешевле 1000р
 cursor.execute("SELECT * FROM items WHERE category = 'офисная' AND price < 1000")
+answer = cursor.fetchall()
+print('Вывести все офисные клавиатуры дешевле 1000р')
+for i in answer:
+    print(i)
 conn.commit()
 
 #Вывести офисную модель Exegate
 cursor.execute("SELECT * FROM items WHERE category = 'офисная' AND name = 'ExeGate' ")
 # или cursor.execute("SELECT * FROM items WHERE id = 6")
+answer = cursor.fetchall()
+print('Вывести офисную модель Exegate')
+for i in answer:
+    print(i)
 conn.commit()
 conn.close()
