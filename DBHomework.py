@@ -7,41 +7,27 @@ cursor = conn.cursor()
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS items (
 id INTEGER PRIMARY KEY,
-name TEXT,
-category TEXT,
+name VARCHAR(48),
+category VARCHAR(32),
 price INT,
 amount INT)
 ''')
 
 conn.commit()
+items = [
+  ('ARDOR GAMING', 'игровая', 4099, 5),
+  ('A4TECH', 'игровая', 2399, 8),
+  ('Redragon Apas', 'игровая', 6499, 12),
+  ('Logitech G413', 'игровая', 6999, 6),
+  ('Ritmix', 'офисная', 650, 20),
+  ('ExeGate', 'офисная', 1500, 10),
+  ('Aceline', 'офисная', 850, 15)
+]
+  
+  
 # Не писал close чтобы не комментировать каждый раз код перед выполнением следующей команды
 
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('ARDOR GAMING', 'игровая', 4099, 5))
-conn.commit()
-
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('A4TECH', 'игровая', 2399, 8))
-conn.commit()
-
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('Redragon Apas', 'игровая', 6499, 12))
-conn.commit()
-
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('Logitech G413', 'игровая', 6999, 6))
-conn.commit()
-
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('Ritmix', 'офисная', 650, 20))
-conn.commit()
-
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('ExeGate', 'офисная', 1500, 10))
-conn.commit()
-
-cursor.execute("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)",
-               ('Aceline', 'офисная', 850, 15))
+cursor.executemany("INSERT INTO items (name, category, price, amount) VALUES(?, ?, ?, ?)", items)
 conn.commit()
 
 #Вывести все игровые клавиатуры дороже 5000р
