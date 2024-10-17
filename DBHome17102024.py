@@ -30,19 +30,27 @@ def insertTable():
     cursor.executemany("INSERT OR IGNORE INTO books (title, genre, author, published_year) VALUES(?, ?, ?, ?)", books)
     conn.commit()
 
-
-def deleteFromTable(title):
-    cursor.execute("DELETE FROM books WHERE title = ?", (title,))
+def printBooks():
+    print('Все книги')
+    cursor.execute('SELECT * FROM books ORDER BY published_year')
+    books = cursor.fetchall()
+    for book in books:
+        print(book)
     conn.commit()
 
 
-def updateTable(publ, title):
-    cursor.execute("UPDATE books SET published_year = ? WHERE title = ?", (publ, title))
+def deleteFromTable(id):
+    cursor.execute("DELETE FROM books WHERE id = ?", (id,))
     conn.commit()
 
 
-def getBooks(title):
-    cursor.execute("SELECT * FROM books WHERE title = ?", (title,))
+def updateTable(publ, id):
+    cursor.execute("UPDATE books SET published_year = ? WHERE id = ?", (publ, id))
+    conn.commit()
+
+
+def getBooks(author):
+    cursor.execute("SELECT * FROM books WHERE author = ?", (author,))
     request = cursor.fetchall()
     for req in request:
         print(req)
@@ -50,14 +58,9 @@ def getBooks(title):
 
 createTable()
 insertTable()
-deleteFromTable('Горе от ума')
-updateTable(1830, 'Евгений Онегин')
-getBooks('1984')
+deleteFromTable(3)
+updateTable(1830, 4)
+getBooks('А.С.Пушкин')
+printBooks()
 
-print('Все книги')
-cursor.execute('SELECT * FROM books')
-books = cursor.fetchall()
-for book in books:
-    print(book)
-conn.commit()
 conn.close()
