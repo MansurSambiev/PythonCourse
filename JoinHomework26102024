@@ -1,0 +1,32 @@
+CREATE TABLE Teachers(
+  teacher_id INTEGER PRIMARY KEY,
+  name TEXT,
+  surname TEXT)
+ 
+CREATE TABLE Groups(
+  group_id INTEGER PRIMARY KEY,
+  group_name TEXT,
+  count_students INTEGER,
+  teacher_id INTEGER,
+  FOREIGN_KEY (teacher_id) REFERENCES Teachers(teacher_id)
+)
+
+INSERT INTO Teachers (name, surname) VALUES(
+  ('Anna', 'Ivanovna'),
+  ('Boris', 'Victorovich'),
+  ('Petr', 'Sergeevich'),
+  ('Maria', 'Petrovna'),
+  ('Gennadiy', 'Mikhaylovich')
+  )
+  
+INSERT INTO Groups (group_name, count_students, teacher_id) VALUES(
+  ('Biology', 25, 4),
+  ('Geometry', 16, 1),
+  ('Mathematics', 28, 1),
+  ('Physics', 22, 5),
+  ('Chemistry', 12, 4),
+  ('History', 17, 6),
+  ('Algebra', 22, 5)
+  )
+  
+SELECT name, surname FROM Teachers LEFT JOIN Groups ON Teachers.teachers_id = Groups.teachers_id
