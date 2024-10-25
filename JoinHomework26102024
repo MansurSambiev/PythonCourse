@@ -16,7 +16,8 @@ INSERT INTO Teachers (name, surname) VALUES(
   ('Boris', 'Victorovich'),
   ('Petr', 'Sergeevich'),
   ('Maria', 'Petrovna'),
-  ('Gennadiy', 'Mikhaylovich')
+  ('Gennadiy', 'Mikhaylovich'),
+  ('Лев', 'Николаевич')
   )
   
 INSERT INTO Groups (group_name, count_students, teacher_id) VALUES(
@@ -29,4 +30,5 @@ INSERT INTO Groups (group_name, count_students, teacher_id) VALUES(
   ('Algebra', 22, 5)
   )
   
-SELECT name, surname FROM Teachers LEFT JOIN Groups ON Teachers.teachers_id = Groups.teachers_id
+SELECT name, surname, Groups.group_name FROM Teachers LEFT JOIN Groups ON Teachers.teacher_id = Groups.teacher_id
+SELECT name, surname, Groups.group_name FROM Teachers JOIN Groups ON Teachers.teacher_id = Groups.teacher_id WHERE Teachers.teacher_id = 4 
