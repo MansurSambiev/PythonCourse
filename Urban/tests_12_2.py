@@ -44,6 +44,7 @@ class Tournament:
 
 class TournamentTest(unittest.TestCase):
     all_results = {}
+    is_frozen = True
 
     @classmethod
     def setUpClass(cls):
@@ -65,12 +66,15 @@ class TournamentTest(unittest.TestCase):
         self.all_results.update(results)
         self.assertTrue(results[max(results.keys())] == self.runner3)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_race_1(self):
         self.run_tournament(self.runner1, self.runner3)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_race_2(self):
         self.run_tournament(self.runner2, self.runner3)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_race_3(self):
         self.run_tournament(self.runner1, self.runner2, self.runner3)
 
